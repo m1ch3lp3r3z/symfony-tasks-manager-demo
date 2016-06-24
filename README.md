@@ -20,8 +20,12 @@ $ cd symfony-tasks-manager-demo/
 $ composer install --no-interaction
 $ php app/console doctrine:schema:create
 $ php app/console doctrine:fixtures:load --no-interaction
+```
+
+You can skip next installation steps if you already have bower installed globally
+```bash
 $ npm install
-$ bower install
+$ node_modules/bower/bin/bower install
 ```
 
 Usage
