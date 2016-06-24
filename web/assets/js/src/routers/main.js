@@ -49,8 +49,8 @@ define(function(require) {
                 self.application.contentRegion.show(
                     self.bindEvents(new collectionViewClass({ collection: collection }))
                 );
-            }, function(response) {
-                self.application.vent.trigger('response:failed', 'test 123123');
+            }, function() {
+                self.application.execute('showMessage', 'Oops! something went wrong', 'error');
             });
         },
 
