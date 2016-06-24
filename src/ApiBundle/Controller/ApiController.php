@@ -10,8 +10,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
 
-use ApiBundle\Repository\TaskRepository;
-use ApiBundle\Entity\Task;
+use \ApiBundle\Entity\ApiEntityInterface;
 
 abstract class ApiController extends Controller
 {
@@ -86,32 +85,35 @@ abstract class ApiController extends Controller
         ]);
     }
 
-    protected function saveModel($data, Task $task = null)
+    protected function validate(ApiEntityInterface $object)
+    {
+        // to implement in child controller
+    }
+
+    protected function saveModel($data, ApiEntityInterface $object = null)
     {
         $options = [];
 
-        if ($task) {
-            $options['object_to_populate'] = $task;
+        if ($object) {
+            $options['object_to_populate'] = $object;
         }
 
-        $task = $this->getSerializer()->deserialize($data, $this->getModelClassName(), 'json', $options);
+        $object = $this->getSerializer()->deserialize($data, $this->getModelClassName(), 'json', $options);
 
-        if ($task->getStatus() && !in_array($task->getStatus(), [Task::STATUS_PENDING, Task::STATUS_DONE])) {
-            throw new \UnexpectedValueException('Invalid value for Status field', Response::HTTP_BAD_REQUEST);
-        }
+        $this->validate($object);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($task);
+        $em->persist($object);
         $em->flush();
 
-        return $task;
+        return $object;
     }
 
     private function doCreate()
     {
         $data = $this->getRequest()->getContent();
-        $task = $this->saveModel($data);
-        $data = $this->getSerializer()->serialize($task, 'json');
+        $object = $this->saveModel($data);
+        $data = $this->getSerializer()->serialize($object, 'json');
 
         return new Response($data, Response::HTTP_CREATED, $this->headers);
     }
@@ -119,20 +121,20 @@ abstract class ApiController extends Controller
     protected function getItem($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $task = $em->find($this->getFullModelName(), $id);
+        $object = $em->find($this->getFullModelName(), $id);
 
-        if (!$task) {
+        if (!$object) {
             throw new \LogicException('Not found', Response::HTTP_NOT_FOUND);
         }
 
-        return $task;
+        return $object;
     }
 
     private function doEdit($id)
     {
         $data = $this->getRequest()->getContent();
-        $task = $this->saveModel($data, $this->getItem($id));
-        $data = $this->getSerializer()->serialize($task, 'json');
+        $object = $this->saveModel($data, $this->getItem($id));
+        $data = $this->getSerializer()->serialize($object, 'json');
 
         return new Response($data, Response::HTTP_OK, $this->headers);
     }

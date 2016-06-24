@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use ApiBundle\Repository\TaskRepository;
+use ApiBundle\Entity\Task;
 
 class TaskController extends ApiController
 {
@@ -30,6 +31,13 @@ class TaskController extends ApiController
     public function showAction()
     {
         return parent::doList();
+    }
+
+    protected function validate(\ApiBundle\Entity\ApiEntityInterface $object)
+    {
+        if ($object->getStatus() && !in_array($object->getStatus(), [Task::STATUS_PENDING, Task::STATUS_DONE])) {
+            throw new \UnexpectedValueException('Invalid value for Status field', Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**

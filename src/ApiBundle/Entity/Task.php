@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="ApiBundle\Repository\TaskRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Task
+class Task implements ApiEntityInterface
 {
     const STATUS_PENDING = "pending";
     const STATUS_DONE = "done";
