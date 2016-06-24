@@ -1,11 +1,11 @@
 define(function(require) {
     'use strict';
 
-    var _ = require('underscore'),
-        MainLayout = require('views/layout');
+    var _ = require('underscore');
+        //MainLayout = require('views/layout');
 
-        require('collections/task');
-
+    require('collections/task');
+    require('views/task/collection');
     require('backbone.marionette');
 
     // Define and initializes self only once
