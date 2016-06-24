@@ -40,6 +40,9 @@ Once local server is running go to [localhost:8000](http://localhost:8000/)
 TODOs
 -----
 
+  * Modify browser url (pushState) when paginating or editing item
+  * Allows to load initial app state from URL (pagination, editing)
+  * Implement loading animation based on Spin js library (already installed)
   * Implement unit tests!!!
   * Implement API authentication
 
