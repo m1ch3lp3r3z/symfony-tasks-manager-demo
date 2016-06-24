@@ -36,3 +36,10 @@ $ php app/console server:run
 ```
 
 Once local server is running go to [localhost:8000](http://localhost:8000/)
+
+TODOs
+-----
+
+  * Implement unit tests!!!
+  * Implement API authentication
+
