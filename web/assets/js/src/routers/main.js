@@ -26,9 +26,7 @@ define(function(require) {
         },
 
         showHome: function() {
-            if (this.currentView == null || !(this.currentView instanceof MainLayout)) {
-                this.currentView = new MainLayout();
-            }
+            Backbone.history.navigate('task', { trigger: true });
         },
 
         bindEvents: function(view) {
