@@ -18,7 +18,9 @@ Installation
 $ git clone https://github.com/m1ch3lp3r3z/symfony-tasks-manager-demo
 $ cd symfony-tasks-manager-demo/
 $ composer install --no-interaction
-$ npm install bower
+$ php app/console doctrine:schema:create
+$ php app/console doctrine:fixtures:load --no-interaction
+$ npm install
 $ bower install
 ```
 
