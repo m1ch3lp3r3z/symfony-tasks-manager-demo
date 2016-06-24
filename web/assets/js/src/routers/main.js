@@ -55,14 +55,7 @@ define(function(require) {
         },
 
         showModelDetail: function(id) {
-            var task = new TaskModel(id),
-                callback = function() {
-                    self.application.contentRegion.show(new TaskItemView({ model: task }));
-                };
-
-            tasks.fetch().then(callback, function() {
-                self.application.vent.trigger('response:failed', 'test 123123');
-            });
+            throw new Error('not implemented')
         }
 
     });
