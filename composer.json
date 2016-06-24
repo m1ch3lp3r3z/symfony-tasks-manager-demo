@@ -2,7 +2,7 @@
     "name": "tasks-manager-demo",
     "license": "MIT",
     "type": "project",
-    "keywords": "symfony, backbone, demo, tasks, crud",
+    "keywords": ["symfony", "backbone", "demo", "tasks", "crud"],
     "autoload": {
         "psr-4": {
             "": "src/"
