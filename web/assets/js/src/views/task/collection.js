@@ -75,6 +75,7 @@ define(function(require) {
 
         onPreviousPageClick: function(event) {
             event.preventDefault();
+            event.stopPropagation();
 
             if (this.collection.hasPreviousPage()) {
                 this.collection.getPreviousPage();
@@ -83,6 +84,7 @@ define(function(require) {
 
         onNextPageClick: function(event) {
             event.preventDefault();
+            event.stopPropagation();
 
             if (this.collection.hasNextPage()) {
                 this.collection.getNextPage();
