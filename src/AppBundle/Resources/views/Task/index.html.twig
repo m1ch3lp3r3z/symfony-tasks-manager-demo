@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tasks Manager</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row" data-region="status">
+
+    </div>
+    <div class="row" data-region="content">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    var require = {
+        baseUrl: 'assets/js/vendor'
+    };
+</script>
+<script data-main="../main" src="assets/js/vendor/requirejs/require.js"></script>
+{% endblock %}

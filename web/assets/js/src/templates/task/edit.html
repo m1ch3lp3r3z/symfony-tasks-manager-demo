@@ -1,0 +1,24 @@
+<td>
+    <div class="form-group">
+        <input type="text" data-model="title" class="form-control" placeholder="Title" value="{{ title }}"/>
+    </div>
+</td>
+<td>
+    <div class="form-group">
+        <textarea data-model="description" class="form-control" placeholder="Description">{{ description }}</textarea>
+    </div>
+</td>
+<td>
+    <div class="form-group">
+        <select data-model="status" class="form-control">
+            {{#statuses}}
+            <option value="{{ value }}" {{#selected}}selected="selected"{{/selected}}>{{ label }}</option>
+            {{/statuses}}
+        </select>
+    </div>
+</td>
+<td>
+    <button type="button" class="btn btn-primary" data-action="save-item">Save</button>
+    <button type="button" class="btn btn-warning" data-action="cancel-item">Cancel</button>
+</td>
+
